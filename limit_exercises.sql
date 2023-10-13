@@ -42,5 +42,14 @@ from employees where (YEAR(hire_date) between 1990 and 2000) and MONTH(birth_dat
 order by hire_date desc
 limit 10, 4;  --offset acts as starting point, where limit is ending results total --My intent with this query was to limit the reslts to 10, with evrey 5th name being filtered */
 
+-- select * from employees;
+SELECT concat(SUBSTR(first_name,1,1), substr(last_name,1,4), '_', month(birth_date), 
+substr(year(birth_date),1,2)) as username
+-- select substr(last_name,1,4)
+from employees;
+
+
+
+
 
 
