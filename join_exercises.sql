@@ -25,7 +25,7 @@ where a.dept_name = 'Customer Service'; */
 select distinct(CONCAT(a.first_name, ' ', a.last_name)) AS manager_name, b.salary, d.dept_name
 from employees a 
 join salaries b on b.emp_no = a.emp_no
-join dept_emp c on c.emp_no = b.emp_no
+join dept_man c on c.emp_no = b.emp_no
 join departments d on d.dept_no = c.dept_no
 where a.emp_no = c.emp_no; */
 
@@ -34,7 +34,7 @@ where a.emp_no = c.emp_no; */
 /* select distinct(CONCAT(a.first_name, ' ', a.last_name)) AS manager_name, max(b.salary) as highest_salary, d.dept_name
 from employees a 
 join salaries b on b.emp_no = a.emp_no
-join dept_emp c on c.emp_no = b.emp_no
+join dept_man c on c.emp_no = b.emp_no
 join departments d on d.dept_no = c.dept_no
 where a.emp_no = c.emp_no
 group by d.dept_name; */
@@ -45,9 +45,10 @@ group by d.dept_name; */
 
 -- Find the number of current employees in each department
 -- use employees;
-/* SELECT count(c.emp_no) as employee_count, a.dept_name
+/* SELECT count(a.dep_no) as employee_count, a.dept_name
 from departments a join dept_emp b on b.dept_no = a.dept_no
 join employees c on c.emp_no = b.emp_no
+where b.to_date > NOW
 group by a.dept_name; */
 
 -- departments, dept_emp, employees
