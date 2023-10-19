@@ -45,7 +45,7 @@ order by birth_date desc; */ -- This counts how many people were born on each sp
 
 
 
-/* SELECT  (birth_date),
+/* SELECT  (birth_date),     -- Counts individuals born in each decade
 CASE
     WHEN year(employees.birth_date) between 1950 and 1959 then 'A'
     WHEN year(employees.birth_date) between 1960 and 1970 then 'B'
