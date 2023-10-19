@@ -26,18 +26,11 @@ join employees on employees.emp_no = dept_emp.emp_no
 where employees.first_name = 'Aamod'); */
 
 -- How many people in the employees table are no longer working for the company? Give the answer in a comment in your code.
--- use employees;
-/* select count(*) from departments                -- 91479 people
-join dept_emp on dept_emp.dept_no = departments.dept_no
-join employees on employees.emp_no = dept_emp.emp_no
-where dept_emp.to_date != '9999-01-01'; */
+-- use employees;    -59900
+/* 
+select count(*) from employees where emp_no not in (select emp_no from dept_emp
+where to_date > now()); */
 
-/* -- subquery format
-select count(*) from dept_emp where dept_emp.to_date not in
-(select * from departments                -- 91479 people
-join dept_emp on dept_emp.dept_no = departments.dept_no
-join employees on employees.emp_no = dept_emp.emp_no
-where dept_emp.to_date != '9999-01-01'); */
 
 -- Find all the current department managers that are female. List their names in a comment in your code.
 
@@ -139,17 +132,19 @@ join salaries on salaries.emp_no = employees.emp_no
 order by salaries.salary desc) t; */
 
 
-select max(salary), departments.dept_name
-from employees join salaries on salaries.emp_no = employees.emp_no
-join dept_emp on dept_emp.emp_no = employees.emp_no
-join departments on departments.dept_no = dept_emp.dept_no
-group by departments.dept_name;
 
 
+/* -- SELECT STDDEV_POP(salary)
 
+-- my sql subquery to display How many current salaries are within 1 standard deviation of the current highest salary
+-- .83%
 
-
-
+select count(*) from salaries where salary >= 
+(
+select (max(salary) - std(salary)) from salaries where to_date > now()
+)
+and to_date > now();
+*/
 
 
 
